@@ -5,8 +5,10 @@ import com.example.java_backend_demo.pojo.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 
@@ -27,7 +29,7 @@ public class UserController {
 
     @PostMapping("/")
     @ApiOperation(value = "create user", notes = "create object by post body")
-    public String postUser(@RequestBody User user) {
+    public String postUser(@Valid @RequestBody User user) {
         users.put(user.getId(), user);
         return "success";
     }
@@ -39,7 +41,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    @ApiImplicitParam(paramType = "path", dataType = "Long", name = "id", value = "用户编号", required = true, example = "1")
+    @ApiImplicitParam(paramType = "path", dataType = "Long", name = "id", value = "user id", required = true, example = "1")
     @ApiOperation(value = "update user info", notes = "update user info by object receive from body & id from url path")
     public String putUser(@PathVariable Long id, @RequestBody User user) {
         User u = users.get(id);
