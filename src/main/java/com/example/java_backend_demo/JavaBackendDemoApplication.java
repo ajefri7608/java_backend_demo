@@ -18,7 +18,6 @@ import javax.persistence.EntityManagerFactory;
 //EnableSwagger2
 @SpringBootApplication
 @Configuration
-@EnableJpaRepositories(basePackages = { "com.example.java_backend_demo.repository" })
 @ComponentScan("com.example")
 public class JavaBackendDemoApplication {
 
