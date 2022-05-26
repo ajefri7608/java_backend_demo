@@ -1,13 +1,13 @@
 package com.example.java_backend_demo.service;
 
+import com.example.java_backend_demo.pojo.ApiMsg;
 import com.example.java_backend_demo.pojo.Product;
 import com.example.java_backend_demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductServiceImpl {
+public class ProductServiceImpl extends BaseService<Product>{
     @Autowired
     ProductRepository productRepository;
     public void createProduct(Product product){
@@ -33,4 +33,6 @@ public class ProductServiceImpl {
 //    public void deleteProduct(String id) {
 //        repository.deleteById(id);
 //    }
+
+
 }
