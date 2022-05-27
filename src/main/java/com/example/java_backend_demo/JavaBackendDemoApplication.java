@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.persistence.EntityManagerFactory;
 
-//EnableSwagger2
+
 @SpringBootApplication
 @Configuration
 @ComponentScan("com.example")
