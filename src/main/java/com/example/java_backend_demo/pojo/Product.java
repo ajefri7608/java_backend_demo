@@ -3,40 +3,30 @@ package com.example.java_backend_demo.pojo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "product")
 
 public class Product {
     @Id
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "name")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private String id;
+    @Column(name = "NAME")
     private String name;
-    @Column(name = "price")
+    @Column(name = "PRICE")
     private int price;
 
     public Product() {
 
     }
 
-    public Product(int id, String name, int price) {
-        this.id = id;
+    public Product(String name, int price) {
         this.name = name;
         this.price = price;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

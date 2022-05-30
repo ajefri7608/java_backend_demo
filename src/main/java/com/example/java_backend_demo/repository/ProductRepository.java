@@ -18,17 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ProductRepository extends JpaSpecificationExecutor<Product>, JpaRepository<Product, Integer> {
     @Modifying
     @Transactional
-    @Query(value = "" + "INSERT INTO product(id, name, price) "
-            + "VALUES (:#{#product.getId()},:#{#product.getName()},:#{#product.getPrice()})", nativeQuery = true)
-    void createProduct(@Param("product") Product product);
-//    public ApiMessageDetail findByRefIdAndLang(Long refId, Language language){
-//        ApiMessageDetail apiMessageDetail = new ApiMessageDetail();
-//        try{
-//            apiMessageDetail = jdbcTemplate.queryForObject("SELECT id FROM API_MESSAGE_DETAIL WHERE REF_ID = " + refId + "AND LANG = " + language, ApiMessageDetail);
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//        return apiMessageDetail;
-//    };
-    Product findById(int id);
+    @Query(value = "" + "INSERT INTO PRODUCT(NAME, PRICE) "
+            + "VALUES (:#{#product.getName()},:#{#product.getPrice()})", nativeQuery = true)
+    int createProduct(@Param("product") Product product);
+
 }
