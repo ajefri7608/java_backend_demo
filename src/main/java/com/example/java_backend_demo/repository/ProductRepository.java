@@ -18,9 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ProductRepository extends JpaSpecificationExecutor<Product>, JpaRepository<Product, Integer> {
     @Modifying
     @Transactional
-    @Query(value = "" + "INSERT INTO product(id, name, price) "
-            + "VALUES (:#{#product.getId()},:#{#product.getName()},:#{#product.getPrice()})", nativeQuery = true)
-    void createProduct(@Param("product") Product product);
+    @Query(value = "" + "INSERT INTO PRODUCT(NAME, PRICE) "
+            + "VALUES (:#{#product.getName()},:#{#product.getPrice()})", nativeQuery = true)
+    int createProduct(@Param("product") Product product);
 
-    Product findById(int id);
 }

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ApiMsgRepository extends JpaSpecificationExecutor<ApiMsg>, JpaRepository<ApiMsg, Integer> {
-    ApiMsg findByRspCode(String code);
+    ApiMsg findByRspCode(Integer code);
 }

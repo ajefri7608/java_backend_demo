@@ -11,6 +11,7 @@ public class ApiMsgService {
         try{
             return apiMsgRepository.findByRspCode(apiMsg.getRspCode());
         }catch (Exception e){
+            System.out.println(e.toString());
             return apiMsg;
         }
 

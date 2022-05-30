@@ -15,11 +15,13 @@ import javax.persistence.*;
 public class ApiMsg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="RspCode")
-    private String rspCode;
-    @Column(name ="RspTitle")
+    @Column(name ="RSP_CODE")
+    private Integer rspCode;
+    @Column(name ="RSP_TITLE")
     private String rspTitle;
-    @Column(name ="RspMsg")
+    @Column(name ="RSP_MSG")
     private String rspMsg;
 
+    public ApiMsg(ApiMsg apiMsg) {
+    }
 }
