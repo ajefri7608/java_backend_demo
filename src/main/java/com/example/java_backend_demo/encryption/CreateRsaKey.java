@@ -20,8 +20,6 @@ public class CreateRsaKey {
     public void writeKeyToFile(){
         try {
             if(rsaPublicKey != null && rsaPrivateKey != null){
-                new File("./RSAPublicKey.txt");
-                new File("./RSAPrivateKey.txt");
                 FileOutputStream fileOutputStream = new FileOutputStream("./RSAPublicKey");
                 fileOutputStream.write(rsaPublicKey.getEncoded());
                 fileOutputStream.flush();

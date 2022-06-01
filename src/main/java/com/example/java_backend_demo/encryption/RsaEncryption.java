@@ -39,6 +39,5 @@ public class RsaEncryption {
         RsaEncryption rsaEncryption = new RsaEncryption();
         System.out.println(rsaEncryption.getPrivateKeyFromFile().toString());
         System.out.println(rsaEncryption.getPublicKeyFromFile().toString());
-        System.out.println("werqwewq");
     }
 }
