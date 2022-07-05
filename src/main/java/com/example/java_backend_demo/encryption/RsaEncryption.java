@@ -82,8 +82,10 @@ public class RsaEncryption {
 
     public static void main(String [] args ) throws Exception {
         RsaEncryption rsaEncryption = new RsaEncryption();
-        System.out.println(rsaEncryption.getPrivateKeyFromFile(rsaPrivateKeyPath).toString());
-        System.out.println(rsaEncryption.getPublicKeyFromFile(rsaPublicKeyPath).toString());
+        System.out.println(getPrivateKeyFromFile(rsaPrivateKeyPath).toString());
+        System.out.println(getPublicKeyFromFile(rsaPublicKeyPath).toString());
+
+        System.out.println(decrypt(encrypt("adsdaq")));
         System.out.println("verifySignature: " + verifySignature("ASDQWE",signSignature("ASDQWE")));
 
 
