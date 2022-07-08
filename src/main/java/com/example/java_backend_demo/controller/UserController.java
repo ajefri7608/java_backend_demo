@@ -1,48 +1,44 @@
 package com.example.java_backend_demo.controller;
 
-import com.example.java_backend_demo.pojo.User;
+import com.example.java_backend_demo.exception.GeneralException;
+import com.example.java_backend_demo.pojo.GeneralResponse;
+import com.example.java_backend_demo.pojo.UserPersonalInfo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import com.example.java_backend_demo.service.UserCreateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 
-@Api(tags = "User")
 @RestController
 @RequestMapping(value = "/users")
-public class UserController {
+public class UserController extends BaseController{
 
-
-    static Map<Long, User> users = Collections.synchronizedMap(new HashMap<>());
+    @Autowired
+    UserCreateService userCreateService;
+    static Map<String, UserPersonalInfo> users = Collections.synchronizedMap(new HashMap<>());
 
     @GetMapping("/")
-    @ApiOperation(value = "get user info")
-    public List<User> getUserList() {
-        List<User> r = new ArrayList<>(users.values());
+    public List<UserPersonalInfo> getUserList() {
+        List<UserPersonalInfo> r = new ArrayList<>(users.values());
         return r;
     }
 
     @PostMapping("/")
-    @ApiOperation(value = "create user", notes = "create object by post body")
-    public String postUser(@RequestBody User user) {
-        users.put(user.getId(), user);
-        return "success";
+    public GeneralResponse createUser(@Valid @RequestBody UserPersonalInfo user) throws GeneralException {
+        return userCreateService.start(user);
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "get user detail", notes = "get user detail by id which receive from url path")
-    public User getUser(@PathVariable Long id) {
+    public UserPersonalInfo getUser(@PathVariable Long id) {
         return users.get(id);
     }
 
     @PutMapping("/{id}")
-    @ApiImplicitParam(paramType = "path", dataType = "Long", name = "id", value = "用户编号", required = true, example = "1")
-    @ApiOperation(value = "update user info", notes = "update user info by object receive from body & id from url path")
-    public String putUser(@PathVariable Long id, @RequestBody User user) {
-        User u = users.get(id);
+    public String putUser(@PathVariable String id, @RequestBody UserPersonalInfo user) {
+        UserPersonalInfo u = users.get(id);
         u.setName(user.getName());
         u.setAge(user.getAge());
         users.put(id, u);
@@ -50,7 +46,6 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "delete user", notes = "delete user by url path id")
     public String deleteUser(@PathVariable Long id) {
         users.remove(id);
         return "success";
