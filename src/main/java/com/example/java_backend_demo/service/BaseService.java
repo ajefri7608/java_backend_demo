@@ -1,6 +1,6 @@
 package com.example.java_backend_demo.service;
 
-import com.example.java_backend_demo.exception.ExceptionHandle;
+import com.example.java_backend_demo.exception.GeneralException;
 import com.example.java_backend_demo.pojo.ApiMsg;
 import com.example.java_backend_demo.pojo.GeneralResponse;
 import com.example.java_backend_demo.util.LocalApiMsg;
@@ -12,19 +12,19 @@ public abstract class BaseService <T> {
 
     @Autowired
     protected ApiMsgService apiMsgService;
-    protected Boolean validate(T req) throws ExceptionHandle {
+    protected Boolean validate(T req) throws GeneralException {
         return true;
     }
 
 
-    public GeneralResponse start(T request) throws ExceptionHandle{
+    public GeneralResponse start(T request) throws GeneralException{
         if(!validate(request)){
-            throw new ExceptionHandle(new ApiMsg(LocalApiMsg.Success));
+            throw new GeneralException(LocalApiMsg.DataNotValid);
         }else{
             return process(request);
         }
     };
-    protected abstract GeneralResponse process(T request) throws ExceptionHandle;
+    protected abstract GeneralResponse process(T request) throws GeneralException;
     protected GeneralResponse returnRsp(Object data, ApiMsg apiMsg){
         return new GeneralResponse(apiMsgService.getAppMsg(apiMsg));
     }

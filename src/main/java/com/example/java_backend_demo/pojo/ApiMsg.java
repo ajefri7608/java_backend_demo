@@ -1,14 +1,10 @@
 package com.example.java_backend_demo.pojo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 
 @Table(name = "API_MESSAGE")
 @Entity
@@ -22,6 +18,13 @@ public class ApiMsg {
     @Column(name ="RSP_MSG")
     private String rspMsg;
 
-    public ApiMsg(ApiMsg apiMsg) {
+
+    public ApiMsg(Integer rspCode, String rspTitle, String rspMsg) {
+        this.rspCode = rspCode;
+        this.rspTitle = rspTitle;
+        this.rspMsg = rspMsg;
+    }
+
+    public ApiMsg() {
     }
 }
