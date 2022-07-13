@@ -34,4 +34,7 @@ public abstract class BaseService <T> {
     protected GeneralResponse returnRsp(ApiMsg apiMsg){
         return new GeneralResponse(apiMsg);
     }
+    protected GeneralResponse returnRsp(ApiMsg apiMsg, Object data){
+        return new GeneralResponse(apiMsg, data);
+    }
 }

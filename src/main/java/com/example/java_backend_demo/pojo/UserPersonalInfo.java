@@ -18,12 +18,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ApiModel(description="user object")
 @Entity
-@Table(name = "user_personal_info")
+@Table(name = "USER_PERSONAL_INFO")
 public class UserPersonalInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private String id;
+    private Integer id;
 
     @NotEmpty
     @Column(name = "USER_NAME")
@@ -36,10 +36,16 @@ public class UserPersonalInfo {
     @NotEmpty
     @Column(name = "NAME")
     private String name;
-    @Column(name = "AGE")
-    private Integer age;
+    @Column(name = "USER_ROLE")
+    private String userRole;
+    @Column(name = "USER_ACCESS_TOKEN")
+    private String userAccessToken;
     @Column(name = "IMAGE")
     private Integer image;
+    @Column(name = "LOGIN_PROVIDER")
+    private String provider;
+
+
 
     public UserPersonalInfo(String userName, String password){
         this.userName = userName;

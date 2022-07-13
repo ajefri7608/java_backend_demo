@@ -6,13 +6,16 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class GeneralResponse {
     private ApiMsg apiMsg;
-    private Object Data;
+    private Object data;
 
     public GeneralResponse(ApiMsg apiMsg){
         this.apiMsg = apiMsg;
+    }
+    public GeneralResponse(ApiMsg apiMsg, Object data){
+        this.apiMsg = apiMsg;
+        this.data = data;
     }
 }

@@ -1,14 +1,24 @@
 package com.example.java_backend_demo.controller;
 
+import com.example.java_backend_demo.Oauth.CustomOAuth2User;
 import com.example.java_backend_demo.exception.GeneralException;
 import com.example.java_backend_demo.pojo.GeneralResponse;
 import com.example.java_backend_demo.pojo.UserPersonalInfo;
 
 import com.example.java_backend_demo.service.UserCreateService;
+import com.example.java_backend_demo.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.SecurityBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spi.service.contexts.SecurityContextBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.security.Principal;
 import java.util.*;
 
 
@@ -18,6 +28,8 @@ public class UserController extends BaseController{
 
     @Autowired
     UserCreateService userCreateService;
+    @Autowired
+    UserLoginService userLoginService;
     static Map<String, UserPersonalInfo> users = Collections.synchronizedMap(new HashMap<>());
 
     @GetMapping("/")
@@ -26,23 +38,20 @@ public class UserController extends BaseController{
         return r;
     }
 
-    @PostMapping("/")
+    @PostMapping("/register")
     public GeneralResponse createUser(@Valid @RequestBody UserPersonalInfo user) throws GeneralException {
         return userCreateService.start(user);
     }
 
-    @GetMapping("/{id}")
-    public UserPersonalInfo getUser(@PathVariable Long id) {
-        return users.get(id);
+    @GetMapping("/login")
+    public GeneralResponse login(@Valid @RequestBody UserPersonalInfo user) throws GeneralException {
+        return userCreateService.start(user);
     }
 
-    @PutMapping("/{id}")
-    public String putUser(@PathVariable String id, @RequestBody UserPersonalInfo user) {
-        UserPersonalInfo u = users.get(id);
-        u.setName(user.getName());
-        u.setAge(user.getAge());
-        users.put(id, u);
-        return "success";
+    @GetMapping("/oauthLoginRedirect")
+    public GeneralResponse loginFacebook() throws GeneralException, IOException {
+
+        return userLoginService.processOAuthPostLogin();
     }
 
     @DeleteMapping("/{id}")
