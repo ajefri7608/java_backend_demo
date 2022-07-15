@@ -1,6 +1,6 @@
 package com.example.java_backend_demo.service;
 
-import com.example.java_backend_demo.pojo.ApiMsg;
+import com.example.java_backend_demo.Pojo.ApiMsg;
 import com.example.java_backend_demo.repository.ApiMsgRepository;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,6 @@ public class ApiMsgService {
         try{
             return apiMsgRepository.findByRspCode(apiMsg.getRspCode());
         }catch (Exception e){
-            System.out.println(e.toString());
             return apiMsg;
         }
 

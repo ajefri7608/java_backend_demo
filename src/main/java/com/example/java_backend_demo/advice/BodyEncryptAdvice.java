@@ -1,6 +1,5 @@
 package com.example.java_backend_demo.advice;
 
-import com.example.java_backend_demo.pojo.GeneralResponse;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

@@ -1,9 +1,8 @@
 package com.example.java_backend_demo.controller;
 
-
-import com.example.java_backend_demo.exception.ExceptionHandle;
-import com.example.java_backend_demo.pojo.GeneralResponse;
-import com.example.java_backend_demo.pojo.Product;
+import com.example.java_backend_demo.exception.GeneralException;
+import com.example.java_backend_demo.Pojo.GeneralResponse;
+import com.example.java_backend_demo.Pojo.Product;
 import com.example.java_backend_demo.service.ProductCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -26,7 +25,7 @@ public class ProductController {
     }
 
     @PostMapping("/createProduct")
-    public GeneralResponse createProduct(@RequestBody Product product) throws ExceptionHandle {
+    public GeneralResponse createProduct(@RequestBody Product product) throws GeneralException {
         return productService.start(product);
 
     }

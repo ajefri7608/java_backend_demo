@@ -1,8 +1,8 @@
 package com.example.java_backend_demo.service;
 
-import com.example.java_backend_demo.exception.ExceptionHandle;
-import com.example.java_backend_demo.pojo.GeneralResponse;
-import com.example.java_backend_demo.pojo.Product;
+import com.example.java_backend_demo.exception.GeneralException;
+import com.example.java_backend_demo.Pojo.GeneralResponse;
+import com.example.java_backend_demo.Pojo.Product;
 import com.example.java_backend_demo.repository.ProductRepository;
 import com.example.java_backend_demo.util.LocalApiMsg;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class ProductCreateService extends BaseService<Product>{
 
 
     @Override
-    protected GeneralResponse process(Product product) throws ExceptionHandle {
+    protected GeneralResponse process(Product product) throws GeneralException {
         repository.createProduct(product);
         return returnRsp(LocalApiMsg.Success);
     }

@@ -1,11 +1,9 @@
 package com.example.java_backend_demo.service;
 
 import com.example.java_backend_demo.exception.GeneralException;
-import com.example.java_backend_demo.pojo.ApiMsg;
-import com.example.java_backend_demo.pojo.GeneralResponse;
+import com.example.java_backend_demo.Pojo.ApiMsg;
+import com.example.java_backend_demo.Pojo.GeneralResponse;
 import com.example.java_backend_demo.util.LocalApiMsg;
-import io.swagger.annotations.Api;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseService <T> {
@@ -33,5 +31,8 @@ public abstract class BaseService <T> {
     }
     protected GeneralResponse returnRsp(ApiMsg apiMsg){
         return new GeneralResponse(apiMsg);
+    }
+    protected GeneralResponse returnRsp(ApiMsg apiMsg, Object data){
+        return new GeneralResponse(apiMsg, data);
     }
 }

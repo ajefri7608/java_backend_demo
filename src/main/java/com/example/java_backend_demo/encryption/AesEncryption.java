@@ -63,6 +63,8 @@ public class AesEncryption {
         String aesEncryptedText = encrypt(paddingAlgorithm, "plain text", iv, aesBase64EncodedKey);
         String aesDecryptedText= decrypt(paddingAlgorithm, aesEncryptedText, aesBase64EncodedKey, iv );
 
+        System.out.println("aes key to String: " + java.util.Base64.getEncoder()
+                .encodeToString(genKey(256).getEncoded()));
         System.out.println(aesEncryptedText);
         System.out.println(aesDecryptedText);
 
