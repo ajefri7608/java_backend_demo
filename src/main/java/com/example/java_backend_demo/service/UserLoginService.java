@@ -2,8 +2,8 @@ package com.example.java_backend_demo.service;
 
 import com.example.java_backend_demo.Oauth.CustomOAuth2User;
 import com.example.java_backend_demo.exception.GeneralException;
-import com.example.java_backend_demo.pojo.GeneralResponse;
-import com.example.java_backend_demo.pojo.UserPersonalInfo;
+import com.example.java_backend_demo.Pojo.GeneralResponse;
+import com.example.java_backend_demo.Pojo.UserPersonalInfo;
 import com.example.java_backend_demo.repository.UserRepository;
 import com.example.java_backend_demo.util.LocalApiMsg;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class UserLoginService extends BaseService<UserPersonalInfo>{
         }
         CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
 
-        ArrayList<UserPersonalInfo> userList = repository.findByUserName(oauthUser.getId());
+        ArrayList<UserPersonalInfo> userList = repository.findByUserName("fb" + oauthUser.getId());
 
         if(userList.size() > 0){
             return returnRsp(LocalApiMsg.Success, userList.get(0));

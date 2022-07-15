@@ -1,8 +1,8 @@
 package com.example.java_backend_demo.controller;
 
 import com.example.java_backend_demo.exception.GeneralException;
-import com.example.java_backend_demo.pojo.GeneralResponse;
-import com.example.java_backend_demo.pojo.Product;
+import com.example.java_backend_demo.Pojo.GeneralResponse;
+import com.example.java_backend_demo.Pojo.Product;
 import com.example.java_backend_demo.service.ProductCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
