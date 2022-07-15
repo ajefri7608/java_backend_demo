@@ -18,7 +18,11 @@ public class UserLoginService extends BaseService<UserPersonalInfo>{
     UserRepository repository;
     @Override
     protected GeneralResponse process(UserPersonalInfo request) throws GeneralException {
-        return null;
+        ArrayList<UserPersonalInfo> userList = repository.findByUserName(request.getUserName());
+        if(userList.size() > 0){
+            return returnRsp(LocalApiMsg.UserAlreadyExist);
+        }
+        return returnRsp(LocalApiMsg.UserNotFound);
     }
     public GeneralResponse processOAuthPostLogin() throws GeneralException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

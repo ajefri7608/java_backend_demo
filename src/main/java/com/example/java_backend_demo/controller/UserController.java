@@ -42,7 +42,7 @@ public class UserController extends BaseController{
 
     @GetMapping("/login")
     public GeneralResponse login(@Valid @RequestBody UserPersonalInfo user) throws GeneralException {
-        return userCreateService.start(user);
+        return userLoginService.start(user);
     }
 
     @GetMapping("/oauthLoginRedirect")

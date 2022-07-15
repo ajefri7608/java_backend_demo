@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -45,13 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .anyRequest().hasRole("Admin")
+                .antMatchers("/abc/**").hasAuthority("Admin")
+                .anyRequest().permitAll()
                 .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .csrf().disable()
                 .oauth2Login()
                 .userInfoEndpoint()
                 .userService(oauth2UserService)
@@ -68,11 +65,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         response.sendRedirect("/users/oauthLoginRedirect");
                     }
                 });
-        //http.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 
     }
-
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring()
+//                .antMatchers("/abc",
+//                        "/cde/**");
+//    }
 
     private DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
