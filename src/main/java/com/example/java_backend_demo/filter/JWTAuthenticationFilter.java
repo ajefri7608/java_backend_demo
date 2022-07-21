@@ -2,6 +2,7 @@ package com.example.java_backend_demo.filter;
 
 import com.example.java_backend_demo.service.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ import java.util.Map;
 
 @Component
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
-
+    @Lazy
     @Autowired
     private JWTService jwtService;
 
