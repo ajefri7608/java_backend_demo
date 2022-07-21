@@ -37,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserLoginService userLoginService;
     @Autowired
     private UserDetailsService userDetailsService;
-//    @Autowired
-//    private JWTAuthenticationFilter jwtAuthenticationFilter;
+    @Autowired
+    private JWTAuthenticationFilter jwtAuthenticationFilter;
 
 
     @Override
@@ -46,9 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/abc/**").hasAuthority("Admin")
-                .anyRequest().permitAll()
+                .antMatchers("/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable()
                 .oauth2Login()
                 .userInfoEndpoint()
                 .userService(oauth2UserService)
@@ -64,7 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
                         response.sendRedirect("/users/oauthLoginRedirect");
                     }
-                });
+                })
+                .permitAll();
 
 
     }
