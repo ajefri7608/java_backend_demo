@@ -25,4 +25,6 @@ public interface UserRepository extends JpaSpecificationExecutor<UserPersonalInf
     @Query(value = "SELECT * FROM USER_PERSONAL_INFO WHERE USER_NAME=?1", nativeQuery = true)
     ArrayList<UserPersonalInfo> findByUserName(String userName);
 
+    @Query(value = "SELECT * FROM USER_PERSONAL_INFO WHERE EMAIL_ADDRESS=?1", nativeQuery = true)
+    ArrayList<UserPersonalInfo> findByEmail(String email);
 }

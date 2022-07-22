@@ -24,7 +24,7 @@ public class UserLoginService extends BaseService<UserPersonalInfo>{
 
     @Override
     protected GeneralResponse process(UserPersonalInfo request) throws GeneralException {
-        ArrayList<UserPersonalInfo> userListByEmail = repository.findByUserName(request.getUserName());
+        ArrayList<UserPersonalInfo> userListByEmail = repository.findByEmail(request.getEmail());
         ArrayList<UserPersonalInfo> userListByUserName = repository.findByUserName(request.getUserName());
         if(userListByEmail.size() > 0 || userListByUserName.size() > 0){
             UserPersonalInfo user = userListByEmail.size() > 0 ? userListByEmail.get(0) : userListByUserName.get(0);

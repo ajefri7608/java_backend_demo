@@ -18,13 +18,15 @@ public class UserCreateService extends BaseService<UserPersonalInfo>{
     UserRepository repository;
     @Override
     protected GeneralResponse process(UserPersonalInfo request) throws GeneralException {
-
-        ArrayList<UserPersonalInfo> userList = repository.findByUserName(request.getUserName());
-        if(userList.size() > 0){
+        if(crossCheckIsUserExist(request))  {
             return returnRsp(LocalApiMsg.UserAlreadyExist);
         }
         repository.createUser(request);
         return returnRsp(LocalApiMsg.Success, request);
+    }
+    private Boolean crossCheckIsUserExist(UserPersonalInfo request){
+        return repository.findByUserName(request.getUserName()) != null || repository.findByUserName(request.getEmail()) != null
+                || repository.findByEmail(request.getEmail()) != null || repository.findByEmail(request.getUserName()) != null;
     }
 
     @Override
