@@ -31,7 +31,6 @@ public class UserPersonalInfo {
     @NotEmpty
     @Column(name = "PASSWORD")
     private String password;
-    @NotEmpty
     @Column(name = "NAME")
     private String name;
     @Column(name = "USER_ROLE")
