@@ -33,12 +33,13 @@ public class UserLoginService extends BaseService<UserPersonalInfo>{
                 user.setUserAccessToken(token);
                 return returnRsp(LocalApiMsg.Success, user);
             }else{
-                return returnRsp(LocalApiMsg.DataNotValid);
+                return returnRsp(LocalApiMsg.UserInfoNotValid);
             }
 
         }
         return returnRsp(LocalApiMsg.UserNotFound);
     }
+
     public GeneralResponse processOAuthPostLogin() throws GeneralException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication == null){
