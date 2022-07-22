@@ -24,7 +24,7 @@ public class UserCreateService extends BaseService<UserPersonalInfo>{
             return returnRsp(LocalApiMsg.UserAlreadyExist);
         }
         repository.createUser(request);
-        return returnRsp(LocalApiMsg.Success);
+        return returnRsp(LocalApiMsg.Success, request);
     }
 
     @Override

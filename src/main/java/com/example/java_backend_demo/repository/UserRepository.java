@@ -16,10 +16,10 @@ import java.util.ArrayList;
 public interface UserRepository extends JpaSpecificationExecutor<UserPersonalInfo>, JpaRepository<UserPersonalInfo, Integer> {
     @Modifying
     @Transactional
-    @Query(value = "" + "INSERT INTO USER_PERSONAL_INFO(ID, EMAIL_ADDRESS, PASSWORD, NAME, AGE, IMAGE,USER_NAME) "
-            + "VALUES (:#{#userPersonalInfo.getId()}, :#{#userPersonalInfo.getEmail()}," +
-            ":#{#userPersonalInfo.getPassword()}, :#{#userPersonalInfo.getName()}, " +
-            ":#{#userPersonalInfo.getAge()}, :#{#userPersonalInfo.getImage()}, :#{#userPersonalInfo.getUserName()})", nativeQuery = true)
+    @Query(value = "" + "INSERT INTO USER_PERSONAL_INFO(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD, NAME,USER_ROLE) "
+            + "VALUES (:#{#userPersonalInfo.getId()}, :#{#userPersonalInfo.getUserName()}," +
+            ":#{#userPersonalInfo.getEmail()}, :#{#userPersonalInfo.getPassword()}, " +
+            ":#{#userPersonalInfo.getName()}, :#{#userPersonalInfo.getUserRole()})", nativeQuery = true)
     Integer createUser(@Param("userPersonalInfo") UserPersonalInfo userPersonalInfo);
 
     @Query(value = "SELECT * FROM USER_PERSONAL_INFO WHERE USER_NAME=?1", nativeQuery = true)
