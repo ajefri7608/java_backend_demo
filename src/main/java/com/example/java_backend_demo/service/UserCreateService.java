@@ -25,8 +25,8 @@ public class UserCreateService extends BaseService<UserPersonalInfo>{
         return returnRsp(LocalApiMsg.Success, request);
     }
     private Boolean crossCheckIsUserExist(UserPersonalInfo request){
-        return repository.findByUserName(request.getUserName()) != null || repository.findByUserName(request.getEmail()) != null
-                || repository.findByEmail(request.getEmail()) != null || repository.findByEmail(request.getUserName()) != null;
+        return repository.findByUserName(request.getUserName()).size() > 0 || repository.findByUserName(request.getEmail()).size() > 0
+                || repository.findByEmail(request.getEmail()).size() > 0 || repository.findByEmail(request.getUserName()).size() > 0;
     }
 
     @Override

@@ -40,7 +40,7 @@ public class UserController extends BaseController{
         return userCreateService.start(user);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public GeneralResponse login(@Valid @RequestBody UserPersonalInfo user) throws GeneralException {
         return userLoginService.start(user);
     }
