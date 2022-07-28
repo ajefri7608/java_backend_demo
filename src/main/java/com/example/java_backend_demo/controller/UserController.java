@@ -29,12 +29,6 @@ public class UserController extends BaseController{
     UserLoginService userLoginService;
     static Map<String, UserPersonalInfo> users = Collections.synchronizedMap(new HashMap<>());
 
-    @GetMapping("/")
-    public List<UserPersonalInfo> getUserList() {
-        List<UserPersonalInfo> r = new ArrayList<>(users.values());
-        return r;
-    }
-
     @PostMapping("/register")
     public GeneralResponse createUser(@Valid @RequestBody UserPersonalInfo user) throws GeneralException {
         return userCreateService.start(user);
@@ -58,10 +52,5 @@ public class UserController extends BaseController{
         return new GeneralResponse(LocalApiMsg.Success, response);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Long id) {
-        users.remove(id);
-        return "success";
-    }
 
 }
