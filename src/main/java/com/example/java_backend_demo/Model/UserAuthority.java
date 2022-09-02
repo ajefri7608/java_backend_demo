@@ -1,8 +1,4 @@
-package com.example.java_backend_demo.Pojo;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-
-import java.util.Arrays;
+package com.example.java_backend_demo.Model;
 
 public enum UserAuthority {
     ADMIN, EMPLOYEE;

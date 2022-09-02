@@ -1,11 +1,9 @@
 package com.example.java_backend_demo.service;
 
-import com.example.java_backend_demo.Pojo.CustomSpringSecurityUserDetail;
-import com.example.java_backend_demo.Pojo.UserPersonalInfo;
+import com.example.java_backend_demo.Model.CustomSpringSecurityUserDetail;
+import com.example.java_backend_demo.Model.UserPersonalInfo;
 import com.example.java_backend_demo.Vo.AppUserVo;
-import com.example.java_backend_demo.exception.GeneralException;
 import com.example.java_backend_demo.repository.UserRepository;
-import com.example.java_backend_demo.util.LocalApiMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

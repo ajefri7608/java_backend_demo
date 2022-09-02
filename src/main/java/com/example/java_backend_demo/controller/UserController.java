@@ -1,9 +1,9 @@
 package com.example.java_backend_demo.controller;
 
 import com.example.java_backend_demo.exception.GeneralException;
-import com.example.java_backend_demo.Pojo.AuthRequest;
-import com.example.java_backend_demo.Pojo.GeneralResponse;
-import com.example.java_backend_demo.Pojo.UserPersonalInfo;
+import com.example.java_backend_demo.Model.AuthRequest;
+import com.example.java_backend_demo.Model.GeneralResponse;
+import com.example.java_backend_demo.Model.UserPersonalInfo;
 
 import com.example.java_backend_demo.service.JWTService;
 import com.example.java_backend_demo.service.UserCreateService;

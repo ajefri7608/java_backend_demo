@@ -1,6 +1,6 @@
 package com.example.java_backend_demo.service;
 
-import com.example.java_backend_demo.Pojo.AuthRequest;
+import com.example.java_backend_demo.Model.AuthRequest;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;

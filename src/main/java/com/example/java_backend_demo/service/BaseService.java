@@ -1,8 +1,8 @@
 package com.example.java_backend_demo.service;
 
 import com.example.java_backend_demo.exception.GeneralException;
-import com.example.java_backend_demo.Pojo.ApiMsg;
-import com.example.java_backend_demo.Pojo.GeneralResponse;
+import com.example.java_backend_demo.Model.ApiMsg;
+import com.example.java_backend_demo.Model.GeneralResponse;
 import com.example.java_backend_demo.util.LocalApiMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 

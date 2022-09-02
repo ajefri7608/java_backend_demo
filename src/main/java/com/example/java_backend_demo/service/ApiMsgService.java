@@ -1,6 +1,6 @@
 package com.example.java_backend_demo.service;
 
-import com.example.java_backend_demo.Pojo.ApiMsg;
+import com.example.java_backend_demo.Model.ApiMsg;
 import com.example.java_backend_demo.repository.ApiMsgRepository;
 import org.springframework.stereotype.Component;
 

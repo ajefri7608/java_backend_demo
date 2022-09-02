@@ -1,4 +1,4 @@
-package com.example.java_backend_demo.Pojo;
+package com.example.java_backend_demo.Model;
 
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;

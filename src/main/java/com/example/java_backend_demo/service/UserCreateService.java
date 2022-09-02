@@ -1,15 +1,13 @@
 package com.example.java_backend_demo.service;
 
 import com.example.java_backend_demo.exception.GeneralException;
-import com.example.java_backend_demo.Pojo.GeneralResponse;
-import com.example.java_backend_demo.Pojo.UserPersonalInfo;
+import com.example.java_backend_demo.Model.GeneralResponse;
+import com.example.java_backend_demo.Model.UserPersonalInfo;
 import com.example.java_backend_demo.repository.UserRepository;
 import com.example.java_backend_demo.util.LocalApiMsg;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class UserCreateService extends BaseService<UserPersonalInfo>{

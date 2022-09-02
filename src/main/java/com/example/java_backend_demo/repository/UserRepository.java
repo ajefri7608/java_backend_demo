@@ -1,7 +1,7 @@
 package com.example.java_backend_demo.repository;
 
 
-import com.example.java_backend_demo.Pojo.UserPersonalInfo;
+import com.example.java_backend_demo.Model.UserPersonalInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;

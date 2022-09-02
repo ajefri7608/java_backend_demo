@@ -1,8 +1,9 @@
 package com.example.java_backend_demo.repository;
 
 
-import com.example.java_backend_demo.Pojo.ProductVehicle;
-import com.example.java_backend_demo.Pojo.UserPersonalInfo;
+import com.example.java_backend_demo.Model.ProductVehicle;
+import com.example.java_backend_demo.Model.Query.ProductVehicleQueryParams;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,6 +28,5 @@ public interface ProductVehicleRepository extends JpaSpecificationExecutor<Produ
     Integer createProductVehicle(@Param("productVehicle") ProductVehicle productVehicle);
 
 
-    @Query(value = "SELECT * FROM PRODUCT_VEHICLE WHERE NAME LIKE :#{#productVehicle.getName()} OR  ", nativeQuery = true)
-    ArrayList<ProductVehicle> findProductVehicle(@Param("productVehicle") ProductVehicle productVehicle);
+    ArrayList<ProductVehicle> findByNameContaining(String name);
 }

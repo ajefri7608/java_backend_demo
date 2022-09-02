@@ -1,12 +1,9 @@
 package com.example.java_backend_demo.Vo;
 
-import com.example.java_backend_demo.Pojo.UserAuthority;
-import com.example.java_backend_demo.Pojo.UserPersonalInfo;
+import com.example.java_backend_demo.Model.UserPersonalInfo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class AppUserVo {
     private Integer id;

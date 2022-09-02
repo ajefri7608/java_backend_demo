@@ -1,7 +1,7 @@
 package com.example.java_backend_demo.exception;
 
 
-import com.example.java_backend_demo.Pojo.ApiMsg;
+import com.example.java_backend_demo.Model.ApiMsg;
 import lombok.Data;
 
 @Data

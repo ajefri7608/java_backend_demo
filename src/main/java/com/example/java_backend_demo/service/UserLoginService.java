@@ -1,10 +1,10 @@
 package com.example.java_backend_demo.service;
 
 import com.example.java_backend_demo.Oauth.CustomOAuth2User;
-import com.example.java_backend_demo.Pojo.AuthRequest;
+import com.example.java_backend_demo.Model.AuthRequest;
 import com.example.java_backend_demo.exception.GeneralException;
-import com.example.java_backend_demo.Pojo.GeneralResponse;
-import com.example.java_backend_demo.Pojo.UserPersonalInfo;
+import com.example.java_backend_demo.Model.GeneralResponse;
+import com.example.java_backend_demo.Model.UserPersonalInfo;
 import com.example.java_backend_demo.repository.UserRepository;
 import com.example.java_backend_demo.util.LocalApiMsg;
 import org.springframework.beans.factory.annotation.Autowired;
