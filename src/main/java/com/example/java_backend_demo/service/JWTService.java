@@ -53,11 +53,14 @@ public class JWTService {
         JwtParser parser = Jwts.parserBuilder()
                 .setSigningKey(secretKey)
                 .build();
-
-        Claims claims = parser
-                .parseClaimsJws(token)
-                .getBody();
-
+        Claims claims = null ;
+        try{
+            claims = parser
+                    .parseClaimsJws(token)
+                    .getBody();
+        }catch (Exception e){
+            return null;
+        }
         return claims.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }

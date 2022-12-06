@@ -36,14 +36,21 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             String accessToken = authHeader.replace("Bearer ", "");
 
             Map<String, Object> claims = jwtService.parseToken(accessToken);
-            String username = (String) claims.get("username");
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            if (claims != null) {
+                String username = (String) claims.get("username");
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-            Authentication authentication =
-                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+                Authentication authentication =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                chain.doFilter(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+            }
+        }else{
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "please provide access token");
         }
 
-        chain.doFilter(request, response);
+
     }
 }

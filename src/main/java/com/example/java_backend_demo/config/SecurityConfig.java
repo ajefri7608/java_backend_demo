@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/users/genToken").authenticated()
+//                .antMatchers("/users/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
@@ -70,12 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     }
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring()
-//                .antMatchers("/abc",
-//                        "/cde/**");
-//    }
 
     private DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
