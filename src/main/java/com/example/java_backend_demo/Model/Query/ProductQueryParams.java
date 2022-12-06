@@ -1,6 +1,5 @@
 package com.example.java_backend_demo.Model.Query;
 
-import com.example.java_backend_demo.Model.ApiMsg;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductVehicleQueryParams {
+public class ProductQueryParams {
     private String name;
     private Integer maxPrice;
     private Integer minimumPrice;

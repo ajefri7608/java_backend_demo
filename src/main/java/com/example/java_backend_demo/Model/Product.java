@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "PRODUCT_VEHICLE")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductVehicle {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -38,6 +38,13 @@ public class ProductVehicle {
     private String description;
     @Column(name = "PRODUCT_STATUS")
     private String productStatus;
+    @Column(name = "NUM_OF_DOOR")
+    private Integer numOfDoor;
+    @Column(name = "FUEL_TYPE")
+    private String fuelType;
+    @Column(name = "USED")
+    private String used;
+
 //    public ProductVehicle() {
 //
 //    }
