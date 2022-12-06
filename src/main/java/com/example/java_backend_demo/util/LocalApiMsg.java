@@ -12,6 +12,7 @@ public class LocalApiMsg {
     public static final ApiMsg DataNotValid = new ApiMsg(4005, "Data Not Valid", "Input Data Not Valid");
     public static final ApiMsg UserInfoNotValid = new ApiMsg(4005, "Data Not Valid", "User name or Password Not Valid");
     public static final ApiMsg SessionExpired = new ApiMsg(4006, "Session Expire", "Session Expired, please login again");
+    public static final ApiMsg MissingParam = new ApiMsg(4009, "Missing Required Params", "Missing Required Params");
 
     //Product
     public static final ApiMsg ProductCreateFail = new ApiMsg(4006, "Product Create Fail", "Product Create Fail");

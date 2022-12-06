@@ -1,11 +1,13 @@
 package com.example.java_backend_demo.controller;
 
+import com.example.java_backend_demo.Model.FilterProductRequest;
 import com.example.java_backend_demo.Model.Product;
 import com.example.java_backend_demo.exception.GeneralException;
 import com.example.java_backend_demo.Model.GeneralResponse;
 
 import com.example.java_backend_demo.service.ProductCreateService;
 import com.example.java_backend_demo.service.ProductSearchService;
+import com.example.java_backend_demo.util.LocalApiMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -15,21 +17,20 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.validation.Valid;
 
 
-
 @RestController
 @RequestMapping(value = "/products")
-public class ProductController extends BaseController{
+public class ProductController extends BaseController {
     @Value("${SavePath.Image}")
     private String ImagePath;
 
     @Value("${SavePath.ImageMapper}")
     private String ImageMapperPath;
-
 
 
     @Autowired
@@ -47,13 +48,19 @@ public class ProductController extends BaseController{
     public GeneralResponse searchProductByName(@RequestBody String name) throws GeneralException {
         return productSearchService.start(name);
     }
+
+    @GetMapping("/filterProduct")
+    public GeneralResponse filterProduct(@RequestBody FilterProductRequest request) throws GeneralException {
+        return new GeneralResponse(LocalApiMsg.SessionExpired);
+    }
+
     @PostMapping("/imageUpload")
-    public String imageUpload(@RequestParam("file") MultipartFile file){
+    public String imageUpload(@RequestParam("file") MultipartFile file) {
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         fileName = UUID.randomUUID() + suffixName;
 
-        try{
+        try {
             file.transferTo(new File(ImagePath + fileName));
             return ImageMapperPath + fileName;
         } catch (Exception e) {
@@ -62,8 +69,9 @@ public class ProductController extends BaseController{
         }
 
     }
+
     @GetMapping(value = "/image", produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[]  getProductImage(@RequestParam(name = "path") String filePath){
+    public byte[] getProductImage(@RequestParam(name = "path") String filePath) {
         try {
             byte[] bytes = Files.readAllBytes(Paths.get(ImagePath + "/" + filePath));
             return bytes;
@@ -72,10 +80,6 @@ public class ProductController extends BaseController{
         }
         return null;
     }
-
-
-
-
 
 
 }

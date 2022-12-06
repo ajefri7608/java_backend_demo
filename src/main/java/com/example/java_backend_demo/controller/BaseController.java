@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
 public abstract class BaseController {
     @Autowired
@@ -51,6 +53,18 @@ public abstract class BaseController {
     public GeneralResponse handleException(BadCredentialsException e){
 
         return new GeneralResponse(LocalApiMsg.AuthorizationFail);
+    }
+
+    @ExceptionHandler(MissingServletRequestPartException.class)
+    @ResponseBody
+    public GeneralResponse handleException(MissingServletRequestPartException e){
+        return new GeneralResponse(LocalApiMsg.MissingParam);
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ResponseBody
+    public GeneralResponse handleException(MissingServletRequestParameterException e){
+        return new GeneralResponse(LocalApiMsg.MissingParam);
     }
 
 

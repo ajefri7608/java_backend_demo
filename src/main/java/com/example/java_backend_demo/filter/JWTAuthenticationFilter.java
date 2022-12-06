@@ -32,7 +32,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
         String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (authHeader != null) {
+        if (authHeader != null ) {
             String accessToken = authHeader.replace("Bearer ", "");
 
             Map<String, Object> claims = jwtService.parseToken(accessToken);
@@ -45,10 +45,19 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 chain.doFilter(request, response);
             } else {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+                if(request.getServletPath().contains("/users")){
+                    chain.doFilter(request, response);
+                }else{
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+                }
             }
         }else{
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "please provide access token");
+            if(request.getServletPath().contains("/users")){
+                chain.doFilter(request, response);
+            }
+            else{
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "please provide access token");
+            }
         }
 
 
