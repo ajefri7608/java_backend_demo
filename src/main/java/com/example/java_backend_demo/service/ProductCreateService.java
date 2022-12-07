@@ -16,7 +16,7 @@ public class ProductCreateService extends BaseService<Product>{
     @Override
     protected GeneralResponse process(Product request) throws GeneralException {
         try{
-            repository.save(request);
+           // repository.save(request);
             return returnRsp(LocalApiMsg.Success, request);
         }catch (Exception e){
             return returnRsp(LocalApiMsg.ProductCreateFail);

@@ -11,16 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ProductSearchService extends BaseService<String>{
+public class ProductSearchService extends BaseService<Integer>{
     @Autowired
     ProductRepository repository;
 
     @Override
-    protected GeneralResponse process(String name) throws GeneralException {
+    protected GeneralResponse process(Integer id) throws GeneralException {
         //ArrayList<ProductVehicle> products= new ArrayList<>();
-        ArrayList<Product> products= repository.findByNameContaining(name);
+        Optional<Product> products= repository.findById(id);
 
         return returnRsp(LocalApiMsg.Success, products);
 

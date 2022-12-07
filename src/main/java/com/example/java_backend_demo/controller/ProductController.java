@@ -45,8 +45,8 @@ public class ProductController extends BaseController {
     }
 
     @GetMapping("/searchByName")
-    public GeneralResponse searchProductByName(@RequestBody String name) throws GeneralException {
-        return productSearchService.start(name);
+    public GeneralResponse searchProductByName(@RequestParam(name = "id") Integer id) throws GeneralException {
+        return productSearchService.start(id);
     }
 
     @GetMapping("/filterProduct")

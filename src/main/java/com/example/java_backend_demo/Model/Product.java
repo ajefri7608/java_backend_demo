@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,7 +16,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private String id;
+    private Integer id;
     @Column(name = "NAME")
     private String name;
     @Column(name = "PRICE")
@@ -44,6 +45,11 @@ public class Product {
     private String fuelType;
     @Column(name = "USED")
     private String used;
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "PRODUCT_ID", updatable = false)
+    private List<ProductImage> images;
 
 //    public ProductVehicle() {
 //
