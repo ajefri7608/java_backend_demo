@@ -13,6 +13,8 @@ public class LocalApiMsg {
     public static final ApiMsg UserInfoNotValid = new ApiMsg(4005, "Data Not Valid", "User name or Password Not Valid");
     public static final ApiMsg SessionExpired = new ApiMsg(4006, "Session Expire", "Session Expired, please login again");
     public static final ApiMsg MissingParam = new ApiMsg(4009, "Missing Required Params", "Missing Required Params");
+    public static final ApiMsg ProductNotFound = new ApiMsg(4010, "Product Not Found", "Product Not Found");
+    public static final ApiMsg ProductListPageNotFound = new ApiMsg(4011, "The Page You Request Not Found", "The Page You Request Not Found");
 
     //Product
     public static final ApiMsg ProductCreateFail = new ApiMsg(4006, "Product Create Fail", "Product Create Fail");

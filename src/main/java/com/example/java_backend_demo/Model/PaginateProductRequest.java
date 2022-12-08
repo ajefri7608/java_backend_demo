@@ -6,9 +6,8 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FilterProductRequest {
-    private Integer highestPrice;
-    private Integer lowestPrice;
-
+public class PaginateProductRequest {
+    private Integer elementEachPage;
+    private Integer page;
 
 }

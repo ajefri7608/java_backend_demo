@@ -1,13 +1,11 @@
 package com.example.java_backend_demo.controller;
-
-import com.example.java_backend_demo.Model.FilterProductRequest;
+import com.example.java_backend_demo.Model.PaginateProductRequest;
 import com.example.java_backend_demo.Model.Product;
 import com.example.java_backend_demo.exception.GeneralException;
 import com.example.java_backend_demo.Model.GeneralResponse;
-
 import com.example.java_backend_demo.service.ProductCreateService;
+import com.example.java_backend_demo.service.ProductPagingService;
 import com.example.java_backend_demo.service.ProductSearchService;
-import com.example.java_backend_demo.util.LocalApiMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -39,19 +37,22 @@ public class ProductController extends BaseController {
     @Autowired
     ProductSearchService productSearchService;
 
+    @Autowired
+    ProductPagingService productPagingService;
+
     @PostMapping("/createProduct")
     public GeneralResponse createProduct(@Valid @RequestBody Product product) throws GeneralException {
         return productCreateService.start(product);
     }
 
-    @GetMapping("/searchByName")
-    public GeneralResponse searchProductByName(@RequestParam(name = "id") Integer id) throws GeneralException {
+    @GetMapping("/searchById")
+    public GeneralResponse searchProductById(@RequestParam(name = "id") Integer id) throws GeneralException {
         return productSearchService.start(id);
     }
 
-    @GetMapping("/filterProduct")
-    public GeneralResponse filterProduct(@RequestBody FilterProductRequest request) throws GeneralException {
-        return new GeneralResponse(LocalApiMsg.SessionExpired);
+    @GetMapping("/getAllProduct")
+    public GeneralResponse getAllProduct(@RequestBody PaginateProductRequest request) throws GeneralException {
+        return productPagingService.start(request);
     }
 
     @PostMapping("/imageUpload")
