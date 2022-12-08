@@ -4,6 +4,7 @@ import com.example.java_backend_demo.Model.Product;
 import com.example.java_backend_demo.exception.GeneralException;
 import com.example.java_backend_demo.Model.GeneralResponse;
 import com.example.java_backend_demo.service.ProductCreateService;
+import com.example.java_backend_demo.service.ProductGetAllService;
 import com.example.java_backend_demo.service.ProductPagingService;
 import com.example.java_backend_demo.service.ProductSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,9 @@ public class ProductController extends BaseController {
     @Autowired
     ProductPagingService productPagingService;
 
+    @Autowired
+    ProductGetAllService productGetAllService;
+
     @PostMapping("/createProduct")
     public GeneralResponse createProduct(@Valid @RequestBody Product product) throws GeneralException {
         return productCreateService.start(product);
@@ -50,9 +54,14 @@ public class ProductController extends BaseController {
         return productSearchService.start(id);
     }
 
-    @GetMapping("/getAllProduct")
-    public GeneralResponse getAllProduct(@RequestBody PaginateProductRequest request) throws GeneralException {
+    @GetMapping("/getAllProductWithPaginate")
+    public GeneralResponse getAllProductWithPaginate(@RequestBody PaginateProductRequest request) throws GeneralException {
         return productPagingService.start(request);
+    }
+
+    @GetMapping("/getAllProduct")
+    public GeneralResponse getAllProduct() throws GeneralException {
+        return productGetAllService.start(0);
     }
 
     @PostMapping("/imageUpload")
