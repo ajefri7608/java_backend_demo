@@ -31,6 +31,7 @@ public class UserLoginService extends BaseService<UserPersonalInfo>{
             if(user.getPassword().equals(request.getPassword())){
                 String token = jwtService.generateToken(new AuthRequest(user.getUserName(), user.getPassword()));
                 user.setUserAccessToken(token);
+                user.setPassword(null);
                 return returnRsp(LocalApiMsg.Success, user);
             }else{
                 return returnRsp(LocalApiMsg.UserInfoNotValid);
