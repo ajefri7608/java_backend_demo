@@ -33,23 +33,23 @@ To get started, follow these steps:
 Clone the project
 
 ```bash
-  git clone [https://link-to-project](https://github.com/ajefri7608/java_backend_demo.git)
+  git clone https://github.com/ajefri7608/java_backend_demo.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd java_backend_demo
 ```
 
-Install dependencies
+Build the project using Maven
 
 ```bash
-  npm install
+  mvn clean install
 ```
 
-Start the server
+Run the application
 
 ```bash
-  npm run start
+  spring-boot:run "-Dspring-boot.run.jvmArguments= -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -D"
 ```
