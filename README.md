@@ -26,12 +26,30 @@ This project is a basic implementation of a CRUD (Create, Read, Update, and Dele
 | `id`      | `string` | **Required**. Id of item to fetch |
 
 
-## Installation
+## Quick Start
 
-Install my-project with npm
+To get started, follow these steps:
+
+Clone the project
 
 ```bash
-  $ git clone https://github.com/java_backend_demo.git
-  $ cd java_backend_demo
-  $ mvn clean install
+  git clone [https://link-to-project](https://github.com/ajefri7608/java_backend_demo.git)
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
 ```
