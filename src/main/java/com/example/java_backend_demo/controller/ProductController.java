@@ -1,43 +1,95 @@
 package com.example.java_backend_demo.controller;
-
-
-import com.example.java_backend_demo.pojo.Product;
-import com.example.java_backend_demo.service.ProductServiceImpl;
+import com.example.java_backend_demo.Model.PaginateProductRequest;
+import com.example.java_backend_demo.Model.Product;
+import com.example.java_backend_demo.exception.GeneralException;
+import com.example.java_backend_demo.Model.GeneralResponse;
+import com.example.java_backend_demo.service.ProductCreateService;
+import com.example.java_backend_demo.service.ProductGetAllService;
+import com.example.java_backend_demo.service.ProductPagingService;
+import com.example.java_backend_demo.service.ProductSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.net.URI;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.validation.Valid;
+
 
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class ProductController {
+@RequestMapping(value = "/products")
+public class ProductController extends BaseController {
+    @Value("${SavePath.Image}")
+    private String ImagePath;
+
+    @Value("${SavePath.ImageMapper}")
+    private String ImageMapperPath;
+
+
     @Autowired
-    private ProductServiceImpl productService;
+    ProductCreateService productCreateService;
 
+    @Autowired
+    ProductSearchService productSearchService;
 
-    @GetMapping("/products/{id}")
-    public Product getProduct(@PathVariable("id") int id) {
-        Product product = new Product();
-        product.setId(id);
-        product.setName("Romantic Story");
-        product.setPrice(200);
+    @Autowired
+    ProductPagingService productPagingService;
 
-        return product;
+    @Autowired
+    ProductGetAllService productGetAllService;
+
+    @PostMapping("/createProduct")
+    public GeneralResponse createProduct(@Valid @RequestBody Product product) throws GeneralException {
+        return productCreateService.start(product);
     }
 
-    @PostMapping("/products")
-    public void createProduct(@RequestBody Product request) {
+    @GetMapping("/searchById")
+    public GeneralResponse searchProductById(@RequestParam(name = "id") Integer id) throws GeneralException {
+        return productSearchService.start(id);
+    }
 
-        Product product = new Product();
-        product.setId(request.getId());
-        product.setName(request.getName());
-        product.setPrice(request.getPrice());
-        //productDB.add(product);
-        productService.createProduct(product);
+    @GetMapping("/getAllProductWithPaginate")
+    public GeneralResponse getAllProductWithPaginate(@RequestBody PaginateProductRequest request) throws GeneralException {
+        return productPagingService.start(request);
+    }
+
+    @GetMapping("/getAllProduct")
+    public GeneralResponse getAllProduct() throws GeneralException {
+        return productGetAllService.start(0);
+    }
+
+    @PostMapping("/imageUpload")
+    public String imageUpload(@RequestParam("file") MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        fileName = UUID.randomUUID() + suffixName;
+
+        try {
+            file.transferTo(new File(ImagePath + fileName));
+            return ImageMapperPath + fileName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
 
     }
+
+    @GetMapping(value = "/image", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getProductImage(@RequestParam(name = "path") String filePath) {
+        try {
+            byte[] bytes = Files.readAllBytes(Paths.get(ImagePath + "/" + filePath));
+            return bytes;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
