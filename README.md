@@ -4,26 +4,9 @@ This project is a basic implementation of a CRUD (Create, Read, Update, and Dele
 
 
 ## API Reference
+postman with example response:
+https://www.dropbox.com/s/tgp07rdk43cjai7/spring_boot_demo_postman.postman_collection.json?dl=0
 
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
 
 
 ## Quick Start
